@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Monsteralab-auth
+  labels:
+    app: monsteralab-auth
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: monsteralab-auth
+  template:
+    metadata:
+      labels:
+        app: monsteralab-auth
+    spec:
+      containers:
+        - name: monsteralab-auth
+          image: guido233/monsteralab-auth:a19f7bbbc7dcf2253b0d2ce72c1c51c5aa77be68
+          ports:
+            - containerPort: 3000
