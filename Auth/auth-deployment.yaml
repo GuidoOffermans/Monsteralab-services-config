@@ -4,7 +4,7 @@ metadata:
   name: monsteralab-auth-service
 spec:
   selector:
-    app: monsteralab-auth-service
+    app: monsteralab-auth
   ports:
     - name: monsteralab-auth-port
       port: 80
