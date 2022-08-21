@@ -14,7 +14,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: monsteralab-auth
-  namespace: monsteralab
   labels:
     app: monsteralab-auth
 spec:
