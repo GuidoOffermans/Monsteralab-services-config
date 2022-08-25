@@ -1,0 +1,54 @@
+---
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: HTTPRoute
+metadata:
+  name: monsteralab-auth-route-development
+  namespace: monstera-development
+spec:
+  parentRefs:
+    - name: api-gateway
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - kind: Service
+          name: monsteralab-auth
+          port: 80
+---
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: HTTPRoute
+metadata:
+  name: monsteralab-auth-route-staging
+  namespace: monstera-staging
+spec:
+  parentRefs:
+    - name: api-gateway
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - kind: Service
+          name: monsteralab-auth
+          port: 80
+---
+apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: HTTPRoute
+metadata:
+  name: monsteralab-auth-route-production
+  namespace: monstera-production
+spec:
+  parentRefs:
+    - name: api-gateway
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - kind: Service
+          name: monsteralab-auth
+          port: 80

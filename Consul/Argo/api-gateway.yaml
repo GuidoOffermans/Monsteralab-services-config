@@ -1,0 +1,48 @@
+---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  name: api-gateway-monstera-development
+  namespace: monstera-development
+spec:
+  gatewayClassName: consul-api-gateway
+  listeners:
+    - protocol: HTTP
+      port: 80
+      name: http
+      hostname: development.monsteralab.xyz
+      allowedRoutes:
+        namespaces:
+          from: Same
+---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  name: api-gateway-monstera-staging
+  namespace: monstera-staging
+spec:
+  gatewayClassName: consul-api-gateway
+  listeners:
+    - protocol: HTTP
+      port: 80
+      name: http
+      hostname: staging.monsteralab.xyz
+      allowedRoutes:
+        namespaces:
+          from: Same
+---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  name: api-gateway-monstera-production
+  namespace: monstera-production
+spec:
+  gatewayClassName: consul-api-gateway
+  listeners:
+    - protocol: HTTP
+      port: 80
+      name: http
+      hostname: monsteralab.xyz
+      allowedRoutes:
+        namespaces:
+          from: Same
