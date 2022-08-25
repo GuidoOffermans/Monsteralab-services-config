@@ -1,14 +1,29 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceDefaults
+metadata:
+  name: monsteralab-auth
+spec:
+  protocol: http
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: monsteralab-auth
+automountServiceAccountToken: true
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: monsteralab-auth-service
+  labels:
+    app: monsteralab-auth
+  name: monsteralab-auth
 spec:
   selector:
     app: monsteralab-auth
   ports:
     - name: monsteralab-auth-port
       port: 80
-      targetPort: auth-port
+      targetPort: 3000
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,6 +47,16 @@ spec:
       containers:
         - name: monsteralab-auth
           image: guido233/monsteralab-auth:a19f7bbbc7dcf2253b0d2ce72c1c51c5aa77be68
+          env:
+            - name: SERVICE_NAME
+              value: monsteralab-auth
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
           ports:
             - containerPort: 3000
-              name: auth-port
