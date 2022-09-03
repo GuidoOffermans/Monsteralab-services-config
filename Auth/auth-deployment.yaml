@@ -58,5 +58,8 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
+          envFrom:
+            - secretRef:
+                name: dot-env-secret
           ports:
             - containerPort: 3000
