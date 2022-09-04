@@ -46,7 +46,7 @@ spec:
     spec:
       containers:
         - name: monsteralab-auth
-          image: guido233/monsteralab-auth:b1535254e76602be083f4120ed21a141d6cddd36
+          image: guido233/monsteralab-auth:d89e60bd8512f6ad738cc5aefa386f938425c71e
           env:
             - name: SERVICE_NAME
               value: monsteralab-auth
