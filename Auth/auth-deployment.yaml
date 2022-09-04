@@ -42,7 +42,7 @@ spec:
       labels:
         app: monsteralab-auth
       annotations:
-        'consul.hashicorp.com/connect-inject': 'false'
+        'consul.hashicorp.com/connect-inject': 'true'
     spec:
       containers:
         - name: monsteralab-auth
